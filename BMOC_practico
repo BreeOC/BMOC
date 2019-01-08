@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+#define M 3
+#define FLUSH  while(getchar() != '\n')
+/* ESTRUCTURA DE LOS DATOS QUE VOY A USAR */
+struct modelo
+    {
+    char name[30];
+    int holidays;
+    };
+ 
+/* DEFINICION DE PROTOTIPOS */
+    void Menu();
+    void IngresoDatos(struct modelo []);
+    void MuestraDatos(struct modelo []);
+ 
+/* ACA ESTA EL MAIN */
+    int main ()
+        {
+        /* DECLARACIOM DE VARIABLES */
+        int i, opc1=9;
+        struct modelo datos[M];
+        /* MENU PRINCIPAL */
+        while (opc1!=5)
+        {
+        Menu();
+        /* LEE OPCION*/
+        scanf("%d", &opc1);
+        switch (opc1)
+            {
+            /* OPCION ALTA DE PRODUCTOS*/
+            case 1:
+                IngresoDatos(datos);
+                break;
+            
+            /* OPCION MUESTRA EN PANTALLA */
+            case 2:
+                MuestraDatos(datos);
+                break;
+            
+            default:
+                printf("Opcion incorrecta");
+                system("pause>>null");
+                break;
+            }
+        }
+    return 0;
+    }
+/* DEFINICION DE LAS FUNCIONES*/
+void Menu()
+    {
+    system("cls");
+    printf("Menu principal\n");
+    printf("--------------\n");
+    printf("1 - Alta\n");
+    printf("2 - Muestra en pantalla\n");
+    printf("5 - Salir\n");
+    printf("Elija opcion: ");
+    }
+ 
+ 
+void IngresoDatos(struct modelo datos[])
+    {
+    int i;
+    float tempfloat;
+    system("cls");
+    printf("REGISTRO DE TRABAJADORES Y DIAS DE VACACIONES\n");
+    printf("-----------------\n");
+    /* BUSCA UN LUGAR VACIO PARA GUARDAR*/
+    for(i=0;i<M;i++)
+        {
+        
+            /* INGRESA NOMBRE DEL TRABAJADOR */
+            printf("Registro de nombre: ");
+            scanf("%c", &datos[i].name);
+    		printf("\n");
+            /* INGRESA STOCK */
+            printf("Ingrese vacaciones: ");
+            scanf("%d", &datos[i].holidays);
+            break;
+            
+        }
+        /* SI RECORRE TODO EL VECTOR DICE SI NO QUEDA ESPACIO O SI FUE GUARDADO*/
+        if(i==M)
+            printf("No queda memoria suficiente para seguir guardar datos\n");
+            else
+            printf("\nEl dato fue guardado exitosamente");
+    printf("\nPresione ENTER para continuar...");
+    system("pause>>null");
+    return;
+    }
+ 
+
+void MuestraDatos(struct modelo datos[])
+    {
+    int i;
+    system("cls");
+    printf("DIAS VACACIONES\n");
+    printf("\n");
+    printf("Empleado                   Vacaciones");
+    printf("\n");
+    /* LISTA TODO EL VECTOR CON SUS DISTINTOS TIPOS DE DATOS (EL -29 ES PARA QUE LOS CARACTERES SE PONGAN A LA IZQUIERDA)*/
+    for(i=0;i<M;i++)
+        {
+        
+            printf("%c  %d\n", datos[i].name, datos[i].holidays);
+            
+        }
+    printf("\nPresiones ENTER para continuar...");
+    system("pause>>null");
+    }
+ 
